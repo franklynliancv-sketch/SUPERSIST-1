@@ -1,0 +1,199 @@
+:root {
+    --naranja: #FF6600;
+    --azul: #002D5A;
+    --fondo: #02060c;
+    --dorado: #FFD700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--fondo);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    position: relative;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#game-ui {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 520px;
+    padding: 20px;
+}
+
+.lion-head {
+    font-size: 110px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 25px var(--naranja));
+    animation: roar 2.5s infinite alternate ease-in-out;
+    cursor: default;
+}
+
+.header-msg {
+    font-size: 29px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+}
+
+.sub-msg {
+    font-size: 16px;
+    color: #bbbbbb;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+.counter-badge {
+    background: var(--azul);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 700;
+    border: 3px solid var(--naranja);
+    display: inline-block;
+    margin-bottom: 45px;
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.counter-badge:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 12px 30px rgba(255, 102, 0, 0.6);
+}
+
+/* ====================== EL BOTÓN REBELDE ====================== */
+#smart-btn {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--naranja), #FF8533);
+    color: white;
+    border: none;
+    padding: 20px 45px;
+    font-size: 17px;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 12px 35px rgba(255, 102, 0, 0.6);
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.55);
+    white-space: nowrap;
+    z-index: 20;
+    min-width: 220px;
+}
+
+#smart-btn:hover {
+    box-shadow: 0 18px 45px rgba(255, 102, 0, 0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Estados del botón según el nivel */
+.giant {
+    transform: translate(-50%, -50%) scale(2.4) !important;
+    font-size: 24px !important;
+    padding: 28px 65px !important;
+    min-width: 300px;
+}
+
+.tiny {
+    transform: translate(-50%, -50%) scale(0.42) !important;
+    padding: 14px 28px !important;
+    font-size: 14px !important;
+    min-width: 160px;
+}
+
+.shake {
+    animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-5px, 0, 0) scale(0.45); }
+    20%, 80% { transform: translate3d(6px, 0, 0) scale(0.45); }
+    30%, 70% { transform: translate3d(-8px, 0, 0) scale(0.45); }
+    40%, 60% { transform: translate3d(8px, 0, 0) scale(0.45); }
+    50% { transform: translate3d(-4px, 0, 0) scale(0.45); }
+}
+
+/* Flash de victoria épico */
+#win-flash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #FF6600, #FFD700, #FF6600);
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#win-flash.show {
+    opacity: 0.97;
+}
+
+.win-text {
+    font-size: 48px;
+    font-weight: 900;
+    color: #02060c;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow: 0 0 30px rgba(255,255,255,0.9);
+    animation: winpulse 1.2s infinite alternate ease-in-out;
+}
+
+.win-text span {
+    font-size: 26px;
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+@keyframes winpulse {
+    from { transform: scale(0.92); }
+    to { transform: scale(1.08); }
+}
+
+/* Animación del león */
+@keyframes roar {
+    from { 
+        transform: scale(1) rotate(-8deg); 
+        filter: drop-shadow(0 0 20px var(--naranja));
+    }
+    to { 
+        transform: scale(1.08) rotate(8deg); 
+        filter: drop-shadow(0 0 35px var(--dorado));
+    }
+}
+
+/* Efectos adicionales */
+#game-ui {
+    user-select: none;
+}
